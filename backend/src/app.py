@@ -12,6 +12,10 @@ mongo = PyMongo(app)
 #hago referencia a la coleccion users 
 db = mongo.db.users
 
+# esto es como un middleware de express
+CORS(app)
+
+
 # Necesito rutas para las operaciones del CRUD
 # creamos nuestra REST API
 @app.route('/users',methods=['POST'])
@@ -61,7 +65,7 @@ def updateUser(id):
         'email': request.json['email'],
         'password': request.json['password']
     }})
-    return 'user updated'
+    return jsonify('user updated')
 
 if __name__ == "__main__":
     app.run(debug=True)
